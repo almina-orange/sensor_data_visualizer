@@ -43,8 +43,8 @@ void FftObject::draw(const ofRectangle & r, bool bDrawLogScale) {
         float h = r.height / numChannels;
         
         for (int i = 0; i < numChannels; i++) {
-            rs.set(0, h*i+r.y, r.width, h);
-            rs.scaleFromCenter(0.95);
+            rs.set(r.x, h*i+r.y, r.width, h);
+            // rs.scaleFromCenter(0.95);
             plot(drawBins[i], rs, bDrawLogScale);
         }
     }

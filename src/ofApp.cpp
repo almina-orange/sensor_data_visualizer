@@ -14,13 +14,6 @@ void ofApp::setup(){
     movieLoad();
     audioLoad();
 
-    // ofVec3f *att = new ofVec3f[csv.getNumRows()];
-    // for (int i = 0; i < csv.getNumRows(); i++) {
-    //     ofxCsvRow row = csv[i];
-    //     att[i] = ofVec3f(row.getFloat( 1), row.getFloat( 2), row.getFloat( 3));
-    // }
-    // senObj.setup(att, csv.getNumRows(), ofFloatColor(0.0, 0.5, 1.0));
-
     setSensorObject(0);
 
     bSwitch = true;
@@ -49,6 +42,24 @@ void ofApp::draw(){
         ofDrawBitmapStringHighlight("[q/w/e]: switch sensor data style", 20, 100);
     }
 }
+
+// //--------------------------------------------------------------
+// void ofApp::exampleView(ofRectangle r){
+//     ofNoFill();  ofSetColor(255);  ofDrawRectangle(r);
+//     ofRectangle rs = r;
+//     rs.scaleFromCenter(0.85);
+//     ofNoFill();  ofSetColor(255, 0, 0);  ofDrawRectangle(rs);
+    
+//     ofMesh m;
+//     m.clear();  m.setMode(OF_PRIMITIVE_LINE_STRIP);
+//     for (int i = 0; i < 100; i++) {
+//         float x = ofMap(i, 0, 100-1, rs.x, rs.x+rs.width);
+//         float y = ofMap(ofRandom(100), 0, 100-1, rs.y, rs.y+rs.height);
+//         m.addVertex(ofVec3f(x, y));
+//         m.addColor(ofColor::blueViolet);
+//     }
+//     m.draw();
+// }
 
 //--------------------------------------------------------------
 void ofApp::csvLoad(){
@@ -132,89 +143,80 @@ void ofApp::setSensorObject(int mode){
 }
 
 //--------------------------------------------------------------
-void ofApp::separatedWindow(){
-    ofSetColor(ofFloatColor(0.3, 0.3, 0.3));
-    movie.draw(0, 0, ofGetWidth() / 2, ofGetHeight() / 2);
+void ofApp::viewMovie(ofRectangle r){
+    ofNoFill();  ofSetColor(255);  ofDrawRectangle(r);
+    ofRectangle rs = r;
+    rs.scaleFromCenter(0.85);
+    ofFill();  ofSetColor(0, 0, 0, 100);  ofDrawRectangle(rs);
+    ofNoFill();  ofSetColor(255, 0, 0);   ofDrawRectangle(rs);
 
-    fullWave.draw(ofRectangle(0, ofGetHeight() / 6 * 3, ofGetWidth() / 2, ofGetHeight() / 6));
-    wave.draw(ofRectangle(0, ofGetHeight() / 6 * 4, ofGetWidth() / 2, ofGetHeight() / 6));
-    fft.draw(ofRectangle(0, ofGetHeight() / 6 * 5, ofGetWidth() / 2, ofGetHeight() / 6));
-    float head = ofMap(player.getPosition(), 0, 1, 0, ofGetWidth() / 2);
-    ofDrawLine(head, ofGetHeight() / 6 * 3, head, ofGetHeight() / 6 * 4);
-
-    // player.drawDebug(0, ofGetHeight() / 2);
-
-    viewLabel(ofGetWidth() / 2, ofGetHeight() / 2, ofGetWidth() / 2, ofGetHeight() / 2);
-
-    if (drawMode == 0) {
-        ofPushMatrix();
-        ofTranslate(ofGetWidth() / 4 * 3, ofGetHeight() / 4 * 1);
-        ofRotateY(ofGetFrameNum() / 4);
-        ofScale(0.5);
-        senObj.draw3d();
-        ofPopMatrix();
-    } else if (drawMode == 1) {
-        ofPushMatrix();
-        ofTranslate(ofGetWidth() / 2, ofGetHeight() / 4 * 1);
-        ofScale(0.5);
-        senObj.drawGraph();
-        ofPopMatrix();
-    } else if (drawMode == 2) {
-        ofPushMatrix();
-        ofTranslate(ofGetWidth() / 2, ofGetHeight() / 4 * 1);
-        senObj.drawData();
-        ofPopMatrix();
-    }
+    ofSetColor(255);
+    movie.draw(rs.x, rs.y, rs.width, rs.height);
 }
 
 //--------------------------------------------------------------
-void ofApp::duplicatedWindow(){
-    ofSetColor(ofFloatColor(0.3, 0.3, 0.3));
-    movie.draw(0, 0, ofGetWidth(), ofGetHeight());
+void ofApp::viewAudio(ofRectangle r){
+    ofNoFill();  ofSetColor(255);  ofDrawRectangle(r);
+    ofRectangle rs = r;
+    rs.scaleFromCenter(0.85);
+    ofFill();  ofSetColor(0, 0, 0, 100);  ofDrawRectangle(rs);
+    ofNoFill();  ofSetColor(255, 0, 0);   ofDrawRectangle(rs);
 
-    fullWave.draw(ofRectangle(0, ofGetHeight() / 3 * 0, ofGetWidth(), ofGetHeight() / 3));
-    wave.draw(ofRectangle(0, ofGetHeight() / 3 * 1, ofGetWidth(), ofGetHeight() / 3));
-    fft.draw(ofRectangle(0, ofGetHeight() / 3 * 2, ofGetWidth(), ofGetHeight() / 3));
-    float head = ofMap(player.getPosition(), 0, 1, 0, ofGetWidth());
-    ofDrawLine(head, ofGetHeight() / 3 * 0, head, ofGetHeight() / 3 * 1);
-
-    // player.drawDebug(0, 0);
-
-    viewLabel(0, ofGetHeight() / 4, ofGetWidth() / 2, ofGetHeight() / 2);
-
-    if (drawMode == 0) {
-        ofPushMatrix();
-        ofTranslate(ofGetWidth() / 4 * 3, ofGetHeight() / 4 * 2);
-        ofRotateY(ofGetFrameNum() / 4);
-        ofScale(0.5);
-        senObj.draw3d();
-        ofPopMatrix();
-    } else if (drawMode == 1) {
-        ofPushMatrix();
-        ofTranslate(ofGetWidth() / 2, ofGetHeight() / 2);
-        ofScale(0.5);
-        senObj.drawGraph();
-        ofPopMatrix();
-    } else if (drawMode == 2) {
-        ofPushMatrix();
-        ofTranslate(ofGetWidth() / 2, ofGetHeight() / 2);
-        senObj.drawData();
-        ofPopMatrix();
-    }
+    fullWave.draw(ofRectangle(rs.x, rs.y+rs.height/3*0, rs.width, rs.height/3));
+    wave.draw(    ofRectangle(rs.x, rs.y+rs.height/3*1, rs.width, rs.height/3));
+    fft.draw(     ofRectangle(rs.x, rs.y+rs.height/3*2, rs.width, rs.height/3));
+    float head = ofMap(player.getPosition(), 0, 1, rs.x, rs.x+rs.width);
+    ofDrawLine(head, rs.y, head, rs.y+rs.height/3);
 }
 
 //--------------------------------------------------------------
-void ofApp::viewLabel(int x, int y, int w, int h){
+void ofApp::viewSensor(ofRectangle r){
+    ofNoFill();  ofSetColor(255);  ofDrawRectangle(r);
+    ofRectangle rs = r;
+    rs.scaleFromCenter(0.85);
+    ofFill();  ofSetColor(0, 0, 0, 100);  ofDrawRectangle(rs);
+    ofNoFill();  ofSetColor(255, 0, 0);   ofDrawRectangle(rs);
+
+    if (drawMode == 0) { senObj.draw3d(rs); }
+    else if (drawMode == 1) { senObj.drawGraph(rs); }
+    else if (drawMode == 2) { senObj.drawData(rs); }
+}
+
+//--------------------------------------------------------------
+void ofApp::viewLabel(ofRectangle r){
+    ofNoFill();  ofSetColor(255);  ofDrawRectangle(r);
+    ofRectangle rs = r;
+    rs.scaleFromCenter(0.85);
+    ofFill();  ofSetColor(0, 0, 0, 100);  ofDrawRectangle(rs);
+    ofNoFill();  ofSetColor(255, 0, 0);   ofDrawRectangle(rs);
+
+    ofSetColor(255);
     // example bar graph
     ofFill();
     for (int i = 0; i < 8; i++) {
         ofDrawRectangle(
-            x,
-            ofMap(i, 0, 8, y, y+h),
-            w - ofRandom(w),
-            h / 8 * 0.5
+            rs.x,
+            ofMap(i, 0, 8, rs.y, rs.y+rs.height),
+            rs.width - ofRandom(rs.width),
+            rs.height / 8 * 0.5
         );
     }
+}
+
+//--------------------------------------------------------------
+void ofApp::separatedWindow(){
+    viewMovie(ofRectangle(0, 0, ofGetWidth()/2, ofGetHeight()/2));
+    viewAudio(ofRectangle(0, ofGetHeight()/2, ofGetWidth()/2, ofGetHeight()/2));
+    viewSensor(ofRectangle(ofGetWidth()/2, 0, ofGetWidth()/2, ofGetHeight()/2));
+    viewLabel(ofRectangle(ofGetWidth()/2, ofGetHeight()/2, ofGetWidth()/2, ofGetHeight()/2));
+}
+
+//--------------------------------------------------------------
+void ofApp::duplicatedWindow(){
+    viewMovie(ofRectangle(0, 0, ofGetWidth(), ofGetHeight()));
+    viewAudio(ofRectangle(0, 0, ofGetWidth(), ofGetHeight()));
+    viewSensor(ofRectangle(ofGetWidth()/2, ofGetHeight()/4, ofGetWidth()/2, ofGetHeight()/2));
+    viewLabel(ofRectangle(0, ofGetHeight()/4, ofGetWidth()/2, ofGetHeight()/2));
 }
 
 //--------------------------------------------------------------

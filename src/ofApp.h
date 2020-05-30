@@ -36,6 +36,12 @@ class ofApp : public ofBaseApp{
 		void duplicatedWindow();
 		void viewLabel(int x, int y, int w, int h);
 		
+		void exampleView(ofRectangle r);
+		void viewMovie(ofRectangle r);
+		void viewAudio(ofRectangle r);
+		void viewSensor(ofRectangle r);
+		void viewLabel(ofRectangle r);
+		
 		ofxCsv csv;
 		ofVideoPlayer movie;
 

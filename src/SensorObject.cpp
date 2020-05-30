@@ -48,34 +48,55 @@ void SensorObject::update(){
 }
 
 //--------------------------------------------------------------
-void SensorObject::drawData(){
-    ofDrawBitmapStringHighlight("x = " + ofToString(points[frame].x), 20, 20, ofColor(0, 50));
-    ofDrawBitmapStringHighlight("y = " + ofToString(points[frame].x), 20, 40, ofColor(0, 50));
-    ofDrawBitmapStringHighlight("z = " + ofToString(points[frame].x), 20, 60, ofColor(0, 50));
+void SensorObject::drawData(ofRectangle r){
+    ofDrawBitmapStringHighlight("x = " + ofToString(points[frame].x), r.x+20, r.y+r.height/2-20, ofColor(0, 50));
+    ofDrawBitmapStringHighlight("y = " + ofToString(points[frame].x), r.x+20, r.y+r.height/2  , ofColor(0, 50));
+    ofDrawBitmapStringHighlight("z = " + ofToString(points[frame].x), r.x+20, r.y+r.height/2+20, ofColor(0, 50));
 }
 
 //--------------------------------------------------------------
-void SensorObject::drawGraph(){
+void SensorObject::drawGraph(ofRectangle r){
     ofSetColor(objMesh.getColor(0));
 
     ofNoFill();
     ofBeginShape();
-    for (int i = 0; i < size; i++) { ofVertex(ofMap(i, 0, size-1, 10, ofGetWidth() - 10), points[i].x); }
+    for (int i = 0; i < size; i++) {
+        ofVertex(
+            ofMap(i, 0, size-1, r.x, r.x+r.width),
+            ofMap(ofClamp(points[i].x, -3, 3), -3, 3, r.y+r.height, r.y)
+        );
+    }
     ofEndShape();
 
     ofNoFill();
     ofBeginShape();
-    for (int i = 0; i < size; i++) { ofVertex(ofMap(i, 0, size-1, 10, ofGetWidth() - 10), points[i].y); }
+    for (int i = 0; i < size; i++) {
+        ofVertex(
+            ofMap(i, 0, size-1, r.x, r.x+r.width),
+            ofMap(ofClamp(points[i].y, -3, 3), -3, 3, r.y+r.height, r.y)
+        );
+    }
     ofEndShape();
     
     ofNoFill();
     ofBeginShape();
-    for (int i = 0; i < size; i++) { ofVertex(ofMap(i, 0, size-1, 10, ofGetWidth() - 10), points[i].z); }
+    for (int i = 0; i < size; i++) {
+        ofVertex(
+            ofMap(i, 0, size-1, r.x, r.x+r.width),
+            ofMap(ofClamp(points[i].z, -3, 3), -3, 3, r.y+r.height, r.y)
+        );
+    }
     ofEndShape();
 }
 
 //--------------------------------------------------------------
-void SensorObject::draw3d(){
+void SensorObject::draw3d(ofRectangle r){
+    ofPushMatrix();
+    ofTranslate(r.x, r.y);
+    ofTranslate(r.width/2, r.height/2);
+    ofScale((ofGetHeight() / r.height) / 5);
+    ofRotateY(frame/4);
+
     objMesh.drawWireframe();
 
     ofSetColor(objMesh.getColor(0));
@@ -84,4 +105,6 @@ void SensorObject::draw3d(){
     sphere.setPosition(objMesh.getVertex(0));
     sphere.draw();
     ofDrawLine(ofVec3f(0), objMesh.getVertex(0));
+
+    ofPopMatrix();
 }

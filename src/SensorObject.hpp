@@ -16,9 +16,9 @@ class SensorObject {
         SensorObject();
         void setup(ofVec3f *data, int num, ofFloatColor col);
         void update();
-        void drawData();
-        void drawGraph();
-        void draw3d();
+        void drawData(ofRectangle r);
+        void drawGraph(ofRectangle r);
+        void draw3d(ofRectangle r);
 
         int size;
         ofVboMesh objMesh;
