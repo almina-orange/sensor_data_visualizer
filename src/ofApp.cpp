@@ -2,6 +2,8 @@
 
 //--------------------------------------------------------------
 void ofApp::setup(){
+    ofSetWindowTitle("ofApp");
+    
     ofSetFrameRate(50);
     ofBackground(0);
     ofSetCircleResolution(32);
