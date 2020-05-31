@@ -41,6 +41,10 @@
 		8543821D247DD9090054473A /* SensorObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8543821B247DD9090054473A /* SensorObject.cpp */; };
 		85438222247F6E750054473A /* FftObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 85438220247F6E750054473A /* FftObject.cpp */; };
 		856AA354D08AB4B323081444 /* ofxBaseGui.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9604B925D32EE39065747725 /* ofxBaseGui.cpp */; };
+		85ABF3F124833C1700C0C347 /* ViewMovie.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 85ABF3EF24833C1700C0C347 /* ViewMovie.cpp */; };
+		85ABF3F424833E4700C0C347 /* ViewAudio.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 85ABF3F224833E4700C0C347 /* ViewAudio.cpp */; };
+		85ABF3F72483405F00C0C347 /* ViewLabel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 85ABF3F52483405F00C0C347 /* ViewLabel.cpp */; };
+		85ABF3FA2483417F00C0C347 /* ViewSensor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 85ABF3F82483417F00C0C347 /* ViewSensor.cpp */; };
 		878C0EFF16E187226B0148FA /* ofxSoundObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C2DBFF6E0A9F7007105C9541 /* ofxSoundObject.cpp */; };
 		879A251454401BC0B6E4F238 /* OscTypes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D9BFFBBF4CC43DEE890B3C3E /* OscTypes.cpp */; };
 		8F5205AEF8861EF234F0651A /* ofxOscSender.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 81967292BFC87A0144BD32C6 /* ofxOscSender.cpp */; };
@@ -154,6 +158,14 @@
 		8543821C247DD9090054473A /* SensorObject.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = SensorObject.hpp; sourceTree = "<group>"; };
 		85438220247F6E750054473A /* FftObject.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FftObject.cpp; sourceTree = "<group>"; };
 		85438221247F6E750054473A /* FftObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FftObject.h; sourceTree = "<group>"; };
+		85ABF3EF24833C1700C0C347 /* ViewMovie.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ViewMovie.cpp; sourceTree = "<group>"; };
+		85ABF3F024833C1700C0C347 /* ViewMovie.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = ViewMovie.hpp; sourceTree = "<group>"; };
+		85ABF3F224833E4700C0C347 /* ViewAudio.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ViewAudio.cpp; sourceTree = "<group>"; };
+		85ABF3F324833E4700C0C347 /* ViewAudio.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = ViewAudio.hpp; sourceTree = "<group>"; };
+		85ABF3F52483405F00C0C347 /* ViewLabel.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ViewLabel.cpp; sourceTree = "<group>"; };
+		85ABF3F62483405F00C0C347 /* ViewLabel.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = ViewLabel.hpp; sourceTree = "<group>"; };
+		85ABF3F82483417F00C0C347 /* ViewSensor.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ViewSensor.cpp; sourceTree = "<group>"; };
+		85ABF3F92483417F00C0C347 /* ViewSensor.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = ViewSensor.hpp; sourceTree = "<group>"; };
 		87F26B4B24CBD428AD9EEBAA /* ofxBaseGui.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = ofxBaseGui.h; path = ../../../addons/ofxGui/src/ofxBaseGui.h; sourceTree = SOURCE_ROOT; };
 		89449E3044D456F7DE7BEA14 /* ofxPanel.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = ofxPanel.h; path = ../../../addons/ofxGui/src/ofxPanel.h; sourceTree = SOURCE_ROOT; };
 		8B30E93FD3D3475EED522A0E /* ofxOscBundle.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = ofxOscBundle.h; path = ../../../addons/ofxOsc/src/ofxOscBundle.h; sourceTree = SOURCE_ROOT; };
@@ -527,6 +539,14 @@
 				E4B69E1F0A3A1BDC003C02F2 /* ofApp.h */,
 				8543821B247DD9090054473A /* SensorObject.cpp */,
 				8543821C247DD9090054473A /* SensorObject.hpp */,
+				85ABF3EF24833C1700C0C347 /* ViewMovie.cpp */,
+				85ABF3F024833C1700C0C347 /* ViewMovie.hpp */,
+				85ABF3F224833E4700C0C347 /* ViewAudio.cpp */,
+				85ABF3F324833E4700C0C347 /* ViewAudio.hpp */,
+				85ABF3F52483405F00C0C347 /* ViewLabel.cpp */,
+				85ABF3F62483405F00C0C347 /* ViewLabel.hpp */,
+				85ABF3F82483417F00C0C347 /* ViewSensor.cpp */,
+				85ABF3F92483417F00C0C347 /* ViewSensor.hpp */,
 			);
 			path = src;
 			sourceTree = SOURCE_ROOT;
@@ -724,15 +744,19 @@
 				852E0891794923EE7583C621 /* ofxInputField.cpp in Sources */,
 				483908258D00B98B4BE69F07 /* ofxLabel.cpp in Sources */,
 				F285EB3169F1566CA3D93C20 /* ofxPanel.cpp in Sources */,
+				85ABF3F124833C1700C0C347 /* ViewMovie.cpp in Sources */,
 				837220E80EB56CD44AD27F2A /* ofxSlider.cpp in Sources */,
 				4ADB88E2FB52E76A471065DE /* ofxOscParameterSync.cpp in Sources */,
+				85ABF3F72483405F00C0C347 /* ViewLabel.cpp in Sources */,
 				8543821D247DD9090054473A /* SensorObject.cpp in Sources */,
 				5864AD82E20F15536D054EA3 /* ofxOscMessage.cpp in Sources */,
 				72A929D3561B8232A182ABFC /* ofxOscBundle.cpp in Sources */,
+				85ABF3FA2483417F00C0C347 /* ViewSensor.cpp in Sources */,
 				640279EE111671BD026CB013 /* ofxOscReceiver.cpp in Sources */,
 				8F5205AEF8861EF234F0651A /* ofxOscSender.cpp in Sources */,
 				62545D179C94265CA1389D4A /* OscOutboundPacketStream.cpp in Sources */,
 				879A251454401BC0B6E4F238 /* OscTypes.cpp in Sources */,
+				85ABF3F424833E4700C0C347 /* ViewAudio.cpp in Sources */,
 				0546D1A38E13BD319CC9755B /* OscReceivedElements.cpp in Sources */,
 				C4782ECC372420ACE0615B74 /* OscPrintReceivedElements.cpp in Sources */,
 				67FE4C7B15C2F0478C8126C2 /* NetworkingUtils.cpp in Sources */,

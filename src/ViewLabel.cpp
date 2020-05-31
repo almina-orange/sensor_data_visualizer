@@ -1,37 +1,29 @@
 //
-//  ViewMovie.cpp
+//  ViewLabel.cpp
 //  sensor_data_visualizer
 //
 //  Created by Almina on 2020/05/31.
 //
 
-#include "ViewMovie.hpp"
+#include "ViewLabel.hpp"
 
 //--------------------------------------------------------------
-ViewMovie::ViewMovie(){
+ViewLabel::ViewLabel(){
 
 }
 
 //--------------------------------------------------------------
-void ViewMovie::load(){
-    ofFileDialogResult result = ofSystemLoadDialog("Please select an movie file (.mov, .mp4");
-    if (result.bSuccess) { this->load(result.getPath()); }
+void ViewLabel::load(){
+
 }
 
 //--------------------------------------------------------------
-void ViewMovie::load(string filepath){
-    movie.load(filepath);
-    movie.setLoopState(OF_LOOP_NORMAL);
-    movie.play();
+void ViewLabel::update(){
+
 }
 
 //--------------------------------------------------------------
-void ViewMovie::update(){
-    movie.update();
-}
-
-//--------------------------------------------------------------
-void ViewMovie::draw(ofRectangle r){
+void ViewLabel::draw(ofRectangle r){
     ofNoFill();  ofSetColor(255);  ofDrawRectangle(r);
     ofRectangle rs = r;
     rs.scaleFromCenter(0.85);
@@ -39,5 +31,14 @@ void ViewMovie::draw(ofRectangle r){
     ofNoFill();  ofSetColor(255, 0, 0);   ofDrawRectangle(rs);
 
     ofSetColor(255);
-    movie.draw(rs.x, rs.y, rs.width, rs.height);
+    // example bar graph
+    ofFill();
+    for (int i = 0; i < 8; i++) {
+        ofDrawRectangle(
+            rs.x,
+            ofMap(i, 0, 8, rs.y, rs.y+rs.height),
+            rs.width - ofRandom(rs.width),
+            rs.height / 8 * 0.5
+        );
+    }
 }

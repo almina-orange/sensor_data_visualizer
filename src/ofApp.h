@@ -3,10 +3,12 @@
 #include "ofMain.h"
 #include "ofxGui.h"
 #include "ofxCsv.h"
-#include "ofxSoundPlayerObject.h"
-#include "FftObject.h"
-#include "waveformDraw.h"
+
 #include "SensorObject.hpp"
+#include "ViewMovie.hpp"
+#include "ViewAudio.hpp"
+#include "ViewSensor.hpp"
+#include "ViewLabel.hpp"
 
 class ofApp : public ofBaseApp{
 
@@ -27,36 +29,13 @@ class ofApp : public ofBaseApp{
 		void dragEvent(ofDragInfo dragInfo);
 		void gotMessage(ofMessage msg);
 
-		void csvLoad();
-		void movieLoad();
-		void audioLoad();
-		void setSensorObject(int mode);
-
 		void separatedWindow();
 		void duplicatedWindow();
-		void viewLabel(int x, int y, int w, int h);
-		
-		void exampleView(ofRectangle r);
-		void viewMovie(ofRectangle r);
-		void viewAudio(ofRectangle r);
-		void viewSensor(ofRectangle r);
-		void viewLabel(ofRectangle r);
-		
-		ofxCsv csv;
-		ofVideoPlayer movie;
 
-		ofSoundStream stream;
-		ofxSoundOutput output;
-		ofxSoundInput input;
-
-		// these are all subclasses of ofSoundObject
-		ofxSoundPlayerObject player;
-		FftObject fft;
-		waveformDraw wave;
-		waveformDraw fullWave;
-
-		SensorObject senObj;
+		ViewMovie viewMovie;
+		ViewAudio viewAudio;
+		ViewSensor viewSensor;
+		ViewLabel viewLabel;
 
 		bool bSwitch, bViewInfo;
-		int drawMode;
 };
