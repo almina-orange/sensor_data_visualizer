@@ -10,73 +10,51 @@ void ofApp::setup(){
     // ofEnableDepthTest();
     // ofEnableSmoothing();
 
-    // viewSensor.load();
-    // viewMovie.load();
-    // viewAudio.load();
-    // viewLabel.load();
-
-    viewSensor.load("2020-0427-134121.csv");
-    viewMovie.load("fingers.mov");
-    viewAudio.load("/Users/almina/Downloads/of_v0.10.0_osx_release/apps/myApps/sensor_data_visualizer/bin/data/beat.wav");
-    viewLabel.load();
-
-    bSwitch = true;
     bViewInfo = false;
 }
 
 //--------------------------------------------------------------
 void ofApp::update(){
-    viewMovie.update();
-    viewAudio.update();
-    viewSensor.update();
-    viewLabel.update();
+    viewManager.update();
 }
 
 //--------------------------------------------------------------
 void ofApp::draw(){
     ofSeedRandom(0);
 
-    if (bSwitch) { separatedWindow(); }
-    else { duplicatedWindow(); }
+    viewManager.draw(ofRectangle(0, 0, ofGetWidth(), ofGetHeight()));
 
     ofDrawBitmapStringHighlight("[h]: view info", 20, 20);
     if (bViewInfo) {
         ofDrawBitmapStringHighlight("fps: " + ofToString(ofGetFrameRate()), 20, 40);
-        ofDrawBitmapStringHighlight("[spqce]: switch window mode (dup/sep)", 20, 60);
-        ofDrawBitmapStringHighlight("[1..4]: switch sensor data (att/gyro/grav/acc)", 20, 80);
-        ofDrawBitmapStringHighlight("[q/w/e]: switch sensor data style", 20, 100);
+        ofDrawBitmapStringHighlight("[spqce]: switch view layout", 20, 60);
+        ofDrawBitmapStringHighlight("[a]: switch sensor data (att/gyro/grav/acc)", 20, 80);
+        ofDrawBitmapStringHighlight("[s]: switch sensor view mode (3d/graph/num)", 20, 100);
+        ofDrawBitmapStringHighlight("[f]: switch target view (mov/aud/sen/lab)", 20, 120);
+        ofDrawBitmapStringHighlight("onMouse + [d]: switch input (sim/real)", 20, 140);
     }
 }
 
 //--------------------------------------------------------------
-void ofApp::separatedWindow(){
-    viewMovie.draw(ofRectangle(0, 0, ofGetWidth()/2, ofGetHeight()/2));
-    viewAudio.draw(ofRectangle(0, ofGetHeight()/2, ofGetWidth()/2, ofGetHeight()/2));
-    viewSensor.draw(ofRectangle(ofGetWidth()/2, 0, ofGetWidth()/2, ofGetHeight()/2));
-    viewLabel.draw(ofRectangle(ofGetWidth()/2, ofGetHeight()/2, ofGetWidth()/2, ofGetHeight()/2));
-}
-
-//--------------------------------------------------------------
-void ofApp::duplicatedWindow(){
-    viewMovie.draw(ofRectangle(0, 0, ofGetWidth(), ofGetHeight()));
-    viewAudio.draw(ofRectangle(0, 0, ofGetWidth(), ofGetHeight()));
-    viewSensor.draw(ofRectangle(ofGetWidth()/2, ofGetHeight()/4, ofGetWidth()/2, ofGetHeight()/2));
-    viewLabel.draw(ofRectangle(0, ofGetHeight()/4, ofGetWidth()/2, ofGetHeight()/2));
-}
-
-//--------------------------------------------------------------
 void ofApp::keyPressed(int key){
-    if (key == ' ') { bSwitch = !bSwitch; }
+    if (key == ' ') { viewManager.switchViewLayout(); }
+    if (key == 'f') { viewManager.switchViewTarget(); }
+    if (key == 'a') { viewManager.switchSensorViewMode(); }
+    if (key == 's') { viewManager.switchSensorViewData(); }
+
+    if (key == 'd') {
+        if (viewManager.onMouseViewMovie(mouseX, mouseY)) {
+            viewManager.switchViewMovieInput();
+        }
+        if (viewManager.onMouseViewAudio(mouseX, mouseY)) {
+            viewManager.switchViewAudioInput();
+        }
+        if (viewManager.onMouseViewSensor(mouseX, mouseY)) {
+            viewManager.switchViewSensorInput();
+        }
+    }
+
     if (key == 'h') { bViewInfo = !bViewInfo; }
-
-    if (key == '1') { viewSensor.setSensorObject(0); }
-    if (key == '2') { viewSensor.setSensorObject(1); }
-    if (key == '3') { viewSensor.setSensorObject(2); }
-    if (key == '4') { viewSensor.setSensorObject(3); }
-
-    if (key == 'q') { viewSensor.setDrawMode(0); }
-    if (key == 'w') { viewSensor.setDrawMode(1); }
-    if (key == 'e') { viewSensor.setDrawMode(2); }
 }
 
 //--------------------------------------------------------------
@@ -96,7 +74,7 @@ void ofApp::mouseDragged(int x, int y, int button){
 
 //--------------------------------------------------------------
 void ofApp::mousePressed(int x, int y, int button){
-
+    viewManager.setViewCenter(ofVec2f(x, y));
 }
 
 //--------------------------------------------------------------

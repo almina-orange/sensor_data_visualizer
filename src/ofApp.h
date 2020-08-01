@@ -7,8 +7,11 @@
 #include "SensorObject.hpp"
 #include "ViewMovie.hpp"
 #include "ViewAudio.hpp"
-#include "ViewSensor.hpp"
 #include "ViewLabel.hpp"
+#include "ViewCsv.hpp"
+#include "ViewOsc.hpp"
+
+#include "ViewManager.hpp"
 
 class ofApp : public ofBaseApp{
 
@@ -29,13 +32,7 @@ class ofApp : public ofBaseApp{
 		void dragEvent(ofDragInfo dragInfo);
 		void gotMessage(ofMessage msg);
 
-		void separatedWindow();
-		void duplicatedWindow();
+		ViewManager viewManager;
 
-		ViewMovie viewMovie;
-		ViewAudio viewAudio;
-		ViewSensor viewSensor;
-		ViewLabel viewLabel;
-
-		bool bSwitch, bViewInfo;
+		bool bViewInfo;
 };

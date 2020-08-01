@@ -9,8 +9,9 @@
 #define ViewMovie_hpp
 
 #include "ofMain.h"
+#include "BasicView.hpp"
 
-class ViewMovie {
+class ViewMovie : public BasicView {
     
     public:
         ViewMovie();
@@ -18,8 +19,13 @@ class ViewMovie {
         void load(string filepath);
         void update();
         void draw(ofRectangle r);
+        void switchInput();
 
+        string filepath;
         ofVideoPlayer movie;
+        ofVideoGrabber camera;
+
+        bool bViewMovieFile;
 };
 
 #endif /* ViewMovie_hpp */

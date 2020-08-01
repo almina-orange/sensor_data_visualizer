@@ -9,19 +9,22 @@
 #define ViewAudio_hpp
 
 #include "ofMain.h"
+#include "BasicView.hpp"
 
 #include "ofxSoundPlayerObject.h"
 #include "FftObject.h"
 #include "waveformDraw.h"
 
-class ViewAudio {
+class ViewAudio : public BasicView {
     
     public:
         ViewAudio();
         void load();
         void load(string filepath);
-        void update();
         void draw(ofRectangle r);
+        void switchInput();
+
+        string filepath;
 
         ofSoundStream stream;
         ofxSoundOutput output;
@@ -32,6 +35,8 @@ class ViewAudio {
         FftObject fft;
         waveformDraw wave;
         waveformDraw fullWave;
+
+        bool bViewAudioFile;
 };
 
 #endif /* ViewAudio_hpp */

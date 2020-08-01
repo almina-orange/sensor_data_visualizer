@@ -9,13 +9,11 @@
 #define ViewLabel_hpp
 
 #include "ofMain.h"
+#include "BasicView.hpp"
 
-class ViewLabel {
+class ViewLabel : public BasicView {
     
     public:
-        ViewLabel();
-        void load();
-        void update();
         void draw(ofRectangle r);
 };
 

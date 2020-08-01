@@ -14,17 +14,7 @@ class SensorObject {
     
     public:
         SensorObject();
-        void setup(ofVec3f *data, int num, ofFloatColor col);
-        void update();
-        void drawData(ofRectangle r);
-        void drawGraph(ofRectangle r);
-        void draw3d(ofRectangle r);
-
-        int size;
-        ofVboMesh objMesh;
-        ofVec3f *points;
-
-        int frame;
+        void draw(float roll, float pitch, float yaw);
 };
 
 #endif /* SensorObject_hpp */

@@ -8,21 +8,6 @@
 #include "ViewLabel.hpp"
 
 //--------------------------------------------------------------
-ViewLabel::ViewLabel(){
-
-}
-
-//--------------------------------------------------------------
-void ViewLabel::load(){
-
-}
-
-//--------------------------------------------------------------
-void ViewLabel::update(){
-
-}
-
-//--------------------------------------------------------------
 void ViewLabel::draw(ofRectangle r){
     ofNoFill();  ofSetColor(255);  ofDrawRectangle(r);
     ofRectangle rs = r;

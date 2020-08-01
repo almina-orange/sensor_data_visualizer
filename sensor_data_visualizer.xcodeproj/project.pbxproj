@@ -45,6 +45,11 @@
 		85ABF3F424833E4700C0C347 /* ViewAudio.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 85ABF3F224833E4700C0C347 /* ViewAudio.cpp */; };
 		85ABF3F72483405F00C0C347 /* ViewLabel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 85ABF3F52483405F00C0C347 /* ViewLabel.cpp */; };
 		85ABF3FA2483417F00C0C347 /* ViewSensor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 85ABF3F82483417F00C0C347 /* ViewSensor.cpp */; };
+		85F625F224870E3800E112E8 /* ViewOsc.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 85F625F024870E3800E112E8 /* ViewOsc.cpp */; };
+		85F625F52487185B00E112E8 /* Sensor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 85F625F32487185B00E112E8 /* Sensor.cpp */; };
+		85F625F9248B708200E112E8 /* ViewCsv.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 85F625F7248B708100E112E8 /* ViewCsv.cpp */; };
+		85F625FC248B7A2900E112E8 /* BasicView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 85F625FA248B7A2800E112E8 /* BasicView.cpp */; };
+		85F625FF248B7DD900E112E8 /* ViewManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 85F625FD248B7DD900E112E8 /* ViewManager.cpp */; };
 		878C0EFF16E187226B0148FA /* ofxSoundObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C2DBFF6E0A9F7007105C9541 /* ofxSoundObject.cpp */; };
 		879A251454401BC0B6E4F238 /* OscTypes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D9BFFBBF4CC43DEE890B3C3E /* OscTypes.cpp */; };
 		8F5205AEF8861EF234F0651A /* ofxOscSender.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 81967292BFC87A0144BD32C6 /* ofxOscSender.cpp */; };
@@ -166,6 +171,16 @@
 		85ABF3F62483405F00C0C347 /* ViewLabel.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = ViewLabel.hpp; sourceTree = "<group>"; };
 		85ABF3F82483417F00C0C347 /* ViewSensor.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ViewSensor.cpp; sourceTree = "<group>"; };
 		85ABF3F92483417F00C0C347 /* ViewSensor.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = ViewSensor.hpp; sourceTree = "<group>"; };
+		85F625F024870E3800E112E8 /* ViewOsc.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ViewOsc.cpp; sourceTree = "<group>"; };
+		85F625F124870E3800E112E8 /* ViewOsc.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = ViewOsc.hpp; sourceTree = "<group>"; };
+		85F625F32487185B00E112E8 /* Sensor.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Sensor.cpp; sourceTree = "<group>"; };
+		85F625F42487185B00E112E8 /* Sensor.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Sensor.hpp; sourceTree = "<group>"; };
+		85F625F7248B708100E112E8 /* ViewCsv.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ViewCsv.cpp; sourceTree = "<group>"; };
+		85F625F8248B708200E112E8 /* ViewCsv.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = ViewCsv.hpp; sourceTree = "<group>"; };
+		85F625FA248B7A2800E112E8 /* BasicView.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = BasicView.cpp; sourceTree = "<group>"; };
+		85F625FB248B7A2800E112E8 /* BasicView.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = BasicView.hpp; sourceTree = "<group>"; };
+		85F625FD248B7DD900E112E8 /* ViewManager.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ViewManager.cpp; sourceTree = "<group>"; };
+		85F625FE248B7DD900E112E8 /* ViewManager.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = ViewManager.hpp; sourceTree = "<group>"; };
 		87F26B4B24CBD428AD9EEBAA /* ofxBaseGui.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = ofxBaseGui.h; path = ../../../addons/ofxGui/src/ofxBaseGui.h; sourceTree = SOURCE_ROOT; };
 		89449E3044D456F7DE7BEA14 /* ofxPanel.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = ofxPanel.h; path = ../../../addons/ofxGui/src/ofxPanel.h; sourceTree = SOURCE_ROOT; };
 		8B30E93FD3D3475EED522A0E /* ofxOscBundle.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = ofxOscBundle.h; path = ../../../addons/ofxOsc/src/ofxOscBundle.h; sourceTree = SOURCE_ROOT; };
@@ -547,6 +562,16 @@
 				85ABF3F62483405F00C0C347 /* ViewLabel.hpp */,
 				85ABF3F82483417F00C0C347 /* ViewSensor.cpp */,
 				85ABF3F92483417F00C0C347 /* ViewSensor.hpp */,
+				85F625F024870E3800E112E8 /* ViewOsc.cpp */,
+				85F625F124870E3800E112E8 /* ViewOsc.hpp */,
+				85F625F32487185B00E112E8 /* Sensor.cpp */,
+				85F625F42487185B00E112E8 /* Sensor.hpp */,
+				85F625F7248B708100E112E8 /* ViewCsv.cpp */,
+				85F625F8248B708200E112E8 /* ViewCsv.hpp */,
+				85F625FA248B7A2800E112E8 /* BasicView.cpp */,
+				85F625FB248B7A2800E112E8 /* BasicView.hpp */,
+				85F625FD248B7DD900E112E8 /* ViewManager.cpp */,
+				85F625FE248B7DD900E112E8 /* ViewManager.hpp */,
 			);
 			path = src;
 			sourceTree = SOURCE_ROOT;
@@ -724,6 +749,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E4B69E200A3A1BDC003C02F2 /* main.cpp in Sources */,
+				85F625F9248B708200E112E8 /* ViewCsv.cpp in Sources */,
 				E4B69E210A3A1BDC003C02F2 /* ofApp.cpp in Sources */,
 				55169838B1C1CE8A3035E2D8 /* ofxAudioFile.cpp in Sources */,
 				77699BF6BD81647F909A0009 /* ofxCsv.cpp in Sources */,
@@ -744,6 +770,8 @@
 				852E0891794923EE7583C621 /* ofxInputField.cpp in Sources */,
 				483908258D00B98B4BE69F07 /* ofxLabel.cpp in Sources */,
 				F285EB3169F1566CA3D93C20 /* ofxPanel.cpp in Sources */,
+				85F625FF248B7DD900E112E8 /* ViewManager.cpp in Sources */,
+				85F625F52487185B00E112E8 /* Sensor.cpp in Sources */,
 				85ABF3F124833C1700C0C347 /* ViewMovie.cpp in Sources */,
 				837220E80EB56CD44AD27F2A /* ofxSlider.cpp in Sources */,
 				4ADB88E2FB52E76A471065DE /* ofxOscParameterSync.cpp in Sources */,
@@ -761,6 +789,8 @@
 				C4782ECC372420ACE0615B74 /* OscPrintReceivedElements.cpp in Sources */,
 				67FE4C7B15C2F0478C8126C2 /* NetworkingUtils.cpp in Sources */,
 				510CAFE035E576A4E1502D52 /* UdpSocket.cpp in Sources */,
+				85F625F224870E3800E112E8 /* ViewOsc.cpp in Sources */,
+				85F625FC248B7A2900E112E8 /* BasicView.cpp in Sources */,
 				ADE367465D2A8EBAD4C7A8D9 /* IpEndpointName.cpp in Sources */,
 				6DC40DD805B8D7BBA677A14C /* ofxSlidersGrid.cpp in Sources */,
 				D62F3E04A5125DF78F8859B1 /* ofxSoundObjectBaseRenderer.cpp in Sources */,
