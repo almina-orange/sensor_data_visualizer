@@ -11,6 +11,7 @@
 #include "ofMain.h"
 #include "BasicView.hpp"
 
+#include "ofxGui.h"
 #include "ofxCsv.h"
 #include "SensorObject.hpp"
 #include "Sensor.hpp"
@@ -39,9 +40,7 @@ class ViewSensor : public BasicView {
 
         Sensor sensor;
         float acc_x, acc_y, acc_z;
-        float grav_x, grav_y, grav_z;
         float gyro_x, gyro_y, gyro_z;
-        float att_x, att_y, att_z, att_w;
 
         float tar_x, tar_y, tar_z;
         vector<float> tar_x_buf, tar_y_buf, tar_z_buf;
@@ -52,6 +51,10 @@ class ViewSensor : public BasicView {
         int viewDataIndex;
         string dataLabel;
         ofColor col;
+
+        ofxPanel gui;
+        ofxIntSlider range;
+        ofxIntSlider freq;
 };
 
 #endif /* ViewSensor_hpp */

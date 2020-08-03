@@ -76,3 +76,13 @@ void ViewAudio::switchInput(){
     if (bViewAudioFile) { player.connectTo(wave); }
     else { input.connectTo(wave); }
 }
+
+//--------------------------------------------------------------
+void ViewAudio::switchPlaying(){
+    player.setPaused(player.isPlaying());
+}
+
+//--------------------------------------------------------------
+void ViewAudio::clear(){
+    player.stop();
+}

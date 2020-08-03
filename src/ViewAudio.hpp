@@ -23,6 +23,8 @@ class ViewAudio : public BasicView {
         void load(string filepath);
         void draw(ofRectangle r);
         void switchInput();
+        void switchPlaying();
+        void clear();
 
         string filepath;
 

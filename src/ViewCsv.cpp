@@ -22,37 +22,34 @@ void ViewCsv::load(string filepath){
     this->filepath = filepath;
     csv.load(filepath);
     csv.removeRow(0);  // remove header
+
+    bPlaying = true;
+
+    gui.setup();
+    gui.add(range.setup("time range", sensor.max_buffer / 2, 0, sensor.max_buffer));
+    gui.add(freq.setup("frequency", 50, 1, 100));
 }
 
 //--------------------------------------------------------------
 void ViewCsv::update(){
-    ofxCsvRow row = csv[frame];
+    if (bPlaying) {
+        ofxCsvRow row = csv[frame];
 
-    // att_x = m.getArgAsFloat(0);
-    // att_y = m.getArgAsFloat(1);
-    // att_z = m.getArgAsFloat(2);
-    // att_w = m.getArgAsFloat(3);
+        acc_x = row.getFloat(1);
+        acc_y = row.getFloat(2);
+        acc_z = row.getFloat(3);
 
-    gyro_x = row.getFloat(4);
-    gyro_y = row.getFloat(5);
-    gyro_z = row.getFloat(6);
+        gyro_x = row.getFloat(4);
+        gyro_y = row.getFloat(5);
+        gyro_z = row.getFloat(6);
+        
+        sensor.pushAcc(acc_x, acc_y, acc_z);
+        sensor.pushGyro(gyro_x, gyro_y, gyro_z);
 
-    grav_x = row.getFloat(7);
-    grav_y = row.getFloat(8);
-    grav_z = row.getFloat(9);
-
-    acc_x = row.getFloat(10);
-    acc_y = row.getFloat(11);
-    acc_z = row.getFloat(12);
-    
-    // sensor.pushAtt(row.getFloat(1), row.getFloat(2), row.getFloat(3));
-    sensor.pushGyro(gyro_x, gyro_y, gyro_z);
-    sensor.pushGrav(grav_x, grav_y, grav_z);
-    sensor.pushAcc(acc_x, acc_y, acc_z);
+        frame = (frame + 1) % csv.getNumRows();
+    }
 
     setTargetData(viewDataIndex);
-
-    frame = (frame + 1) % csv.getNumRows();
 }
 
 //--------------------------------------------------------------
@@ -69,5 +66,25 @@ void ViewCsv::draw(ofRectangle r){
     else if (viewMode == 1) { drawGraph(rs); }
     else if (viewMode == 2) { drawData(rs); }
 
+    gui.draw();
+
     ofDrawBitmapStringHighlight(filepath, rs.x+20, rs.y+20, ofColor(0, 150));
+}
+
+//--------------------------------------------------------------
+void ViewCsv::switchPlaying(){
+    bPlaying = !bPlaying;
+}
+
+//--------------------------------------------------------------
+void ViewCsv::clear(){
+    sensor.clear();
+
+    tar_x = 0;  tar_y = 0;  tar_z = 0;
+    tar_x_buf.assign(sensor.max_buffer, 0);
+    tar_y_buf.assign(sensor.max_buffer, 0);
+    tar_z_buf.assign(sensor.max_buffer, 0);
+
+    frame = 0;
+    bPlaying = false;
 }

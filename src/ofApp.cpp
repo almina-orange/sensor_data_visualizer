@@ -54,6 +54,28 @@ void ofApp::keyPressed(int key){
         }
     }
 
+    if (key == 'x') {
+        if (viewManager.onMouseViewMovie(mouseX, mouseY)) {
+            viewManager.switchViewMoviePlay();
+        }
+        if (viewManager.onMouseViewAudio(mouseX, mouseY)) {
+            viewManager.switchViewAudioPlay();
+        }
+        if (viewManager.onMouseViewSensor(mouseX, mouseY)) {
+            viewManager.switchViewSensorPlay();
+        }
+    }
+
+    if (key == 'z') {
+        viewManager.switchViewMoviePlay();
+        viewManager.switchViewAudioPlay();
+        viewManager.switchViewSensorPlay();
+    }
+
+    if (key == 'c') {
+        viewManager.clearView();
+    }
+
     if (key == 'h') { bViewInfo = !bViewInfo; }
 }
 
@@ -69,12 +91,12 @@ void ofApp::mouseMoved(int x, int y ){
 
 //--------------------------------------------------------------
 void ofApp::mouseDragged(int x, int y, int button){
-
+    viewManager.setViewCenter(ofVec2f(x, y));
 }
 
 //--------------------------------------------------------------
 void ofApp::mousePressed(int x, int y, int button){
-    viewManager.setViewCenter(ofVec2f(x, y));
+
 }
 
 //--------------------------------------------------------------

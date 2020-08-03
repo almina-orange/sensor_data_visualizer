@@ -20,6 +20,8 @@ class ViewMovie : public BasicView {
         void update();
         void draw(ofRectangle r);
         void switchInput();
+        void switchPlaying();
+        void clear();
 
         string filepath;
         ofVideoPlayer movie;

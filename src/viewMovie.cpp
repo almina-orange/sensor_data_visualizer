@@ -62,3 +62,13 @@ void ViewMovie::draw(ofRectangle r){
 void ViewMovie::switchInput(){
     bViewMovieFile = !(bViewMovieFile);
 }
+
+//--------------------------------------------------------------
+void ViewMovie::switchPlaying(){
+    movie.setPaused(movie.isPlaying());
+}
+
+//--------------------------------------------------------------
+void ViewMovie::clear(){
+    movie.stop();
+}

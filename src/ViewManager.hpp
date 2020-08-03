@@ -30,14 +30,20 @@ class ViewManager {
         void zoomLayout(ofRectangle r);
         
         void setViewCenter(ofVec2f c);
-
         void switchViewLayout();
         void switchViewTarget();
+
         void switchViewMovieInput();
         void switchViewAudioInput();
         void switchViewSensorInput();
         void switchSensorViewMode();
         void switchSensorViewData();
+
+        void switchViewMoviePlay();
+        void switchViewAudioPlay();
+        void switchViewSensorPlay();
+
+        void clearView();
 
         bool onMouseViewMovie(int x, int y);
         bool onMouseViewAudio(int x, int y);

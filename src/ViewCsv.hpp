@@ -18,9 +18,12 @@ class ViewCsv : public ViewSensor {
         void load(string filepath);
         void update();
         void draw(ofRectangle r);
+        void switchPlaying();
+        void clear();
 
         string filepath;
         ofxCsv csv;
+        bool bPlaying;
 };
 
 #endif /* ViewCsv_hpp */

@@ -10,8 +10,10 @@
 //--------------------------------------------------------------
 ViewManager::ViewManager(){
     viewMovie.load("fingers.mov");
+    // viewMovie.load("IMG_8868.MOV");
     viewAudio.load("/Users/almina/Downloads/of_v0.10.0_osx_release/apps/myApps/sensor_data_visualizer/bin/data/beat.wav");
-    viewCsv.load("2020-0427-134121.csv");
+    // viewCsv.load("2020-0427-134121.csv");
+    viewCsv.load("2020-0802-184128.csv");
     viewOsc.load();
     viewLabel.load();
 
@@ -45,6 +47,9 @@ void ViewManager::update(){
 
 //--------------------------------------------------------------
 void ViewManager::draw(ofRectangle r){
+    // viewCsv.draw(ofRectangle(0, 0, ofGetWidth(), ofGetHeight()));
+
+    // Layout setup
     if (viewLayout == 0) { separatedLayout(r); }
     if (viewLayout == 1) { duplicatedLayout(r); }
     if (viewLayout == 2) { singleLayout(r); }
@@ -125,6 +130,29 @@ void ViewManager::switchViewSensorInput(){
 }
 
 //--------------------------------------------------------------
+void ViewManager::switchViewMoviePlay(){
+    viewMovie.switchPlaying();
+}
+
+//--------------------------------------------------------------
+void ViewManager::switchViewAudioPlay(){
+    viewAudio.switchPlaying();
+}
+
+//--------------------------------------------------------------
+void ViewManager::switchViewSensorPlay(){
+    viewCsv.switchPlaying();
+    // viewOsc.switchPlaying();
+}
+
+//--------------------------------------------------------------
+void ViewManager::clearView(){
+    viewMovie.clear();
+    viewAudio.clear();
+    viewCsv.clear();
+}
+
+//--------------------------------------------------------------
 void ViewManager::switchViewLayout(){
     viewLayout = (viewLayout + 1) % LAYOUT_NUM;
 }
@@ -143,7 +171,7 @@ void ViewManager::switchSensorViewMode(){
 
 //--------------------------------------------------------------
 void ViewManager::switchSensorViewData(){
-    sensorViewDataIndex = (sensorViewDataIndex + 1) % 4;
+    sensorViewDataIndex = (sensorViewDataIndex + 1) % 2;
     viewCsv.setSensorData(sensorViewDataIndex);
     viewOsc.setSensorData(sensorViewDataIndex);
 }
