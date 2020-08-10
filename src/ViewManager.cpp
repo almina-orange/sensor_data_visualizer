@@ -9,26 +9,18 @@
 
 //--------------------------------------------------------------
 ViewManager::ViewManager(){
-    viewMovie.load("fingers.mov");
-    viewAudio.load("/Users/almina/Downloads/of_v0.10.0_osx_release/apps/myApps/sensor_data_visualizer/bin/data/beat.wav");
-    viewCsv.load("2020-0802-184128.csv");
-
-    // viewOsc.load();
-    // viewLabel.load();
-    // viewMovie.load("/Users/almina/Downloads/drive-download-20200808T140253Z-001/IMG_2903.MOV");
-    // viewCsv1.load("/Users/almina/Documents/work/SensorDataParser/data/left-2020-0805-213148-hirasawa-toprock.csv");
-    // viewCsv2.load("/Users/almina/Documents/work/SensorDataParser/data/right-2020-0805-213148-hirasawa-toprock.csv");
-
-    // this->load();
+    viewCsv.load();
 
     separatedLayout(ofRectangle(0, 0, ofGetWidth(), ofGetHeight()));
 
     viewLayout = 0;
     viewTarget = 0;
-    sensorViewMode = 0;
+    sensorViewMode = 1;
     sensorViewDataIndex = 0;
     bViewCsv = true;
     viewCenter = ofVec2f(ofGetWidth() / 2, ofGetHeight() / 2);
+
+    viewCsv.setViewMode(sensorViewMode);
 }
 
 //--------------------------------------------------------------
@@ -42,32 +34,30 @@ void ViewManager::load(){
 
 //--------------------------------------------------------------
 void ViewManager::update(){
-    viewMovie.update();
-    viewAudio.update();
+    // viewMovie.update();
+    // viewAudio.update();
     viewCsv.update();
     // viewCsv1.update();
     // viewCsv2.update();
-    viewOsc.update();
-    viewLabel.update();
+    // viewOsc.update();
+    // viewLabel.update();
 }
 
 //--------------------------------------------------------------
 void ViewManager::draw(ofRectangle r){
-    // viewMovie.draw(ofRectangle(r.x+r.width/4, r.y, r.width/2, r.height/2));
-    // viewCsv1.draw(ofRectangle(r.x          , r.y+r.height/2, r.width/2, r.height/2));
-    // viewCsv2.draw(ofRectangle(r.x+r.width/2, r.y+r.height/2, r.width/2, r.height/2));
+    viewCsv.draw(ofRectangle(r.x, r.y, r.x + r.width, r.y + r.height));
 
-    // Layout setup
-    if (viewLayout == 0) { separatedLayout(r); }
-    if (viewLayout == 1) { duplicatedLayout(r); }
-    if (viewLayout == 2) { singleLayout(r); }
-    if (viewLayout == 3) { zoomLayout(r); }
+    // // Layout setup
+    // if (viewLayout == 0) { separatedLayout(r); }
+    // if (viewLayout == 1) { duplicatedLayout(r); }
+    // if (viewLayout == 2) { singleLayout(r); }
+    // if (viewLayout == 3) { zoomLayout(r); }
 
-    viewMovie.draw(regViewMovie);
-    viewAudio.draw(regViewAudio);
-    if (bViewCsv) { viewCsv.draw(regViewSensor); }
-    else          { viewOsc.draw(regViewSensor); }
-    viewLabel.draw(regViewLabel);
+    // viewMovie.draw(regViewMovie);
+    // viewAudio.draw(regViewAudio);
+    // if (bViewCsv) { viewCsv.draw(regViewSensor); }
+    // else          { viewOsc.draw(regViewSensor); }
+    // viewLabel.draw(regViewLabel);
 }
 
 //--------------------------------------------------------------
