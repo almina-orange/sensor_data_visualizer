@@ -32,6 +32,9 @@ void ofApp::draw(){
         ofDrawBitmapStringHighlight("[s]: switch sensor view mode (3d/graph/num)", 20, 100);
         ofDrawBitmapStringHighlight("[f]: switch target view (mov/aud/sen/lab)", 20, 120);
         ofDrawBitmapStringHighlight("onMouse + [d]: switch input (sim/real)", 20, 140);
+        ofDrawBitmapStringHighlight("onMouse + [x]: switch pause <--> start", 20, 160);
+        ofDrawBitmapStringHighlight("[z]: pause all view", 20, 180);
+        ofDrawBitmapStringHighlight("[c]: reset all view", 20, 200);
     }
 }
 

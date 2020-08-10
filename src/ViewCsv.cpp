@@ -24,6 +24,8 @@ void ViewCsv::load(string filepath){
     csv.removeRow(0);  // remove header
 
     bPlaying = true;
+    frame = 0;
+    f_frame = 0.0;
 
     gui.setup();
     gui.add(range.setup("time range", sensor.max_buffer / 2, 0, sensor.max_buffer));
@@ -69,6 +71,61 @@ void ViewCsv::draw(ofRectangle r){
     gui.draw();
 
     ofDrawBitmapStringHighlight(filepath, rs.x+20, rs.y+20, ofColor(0, 150));
+}
+
+//--------------------------------------------------------------
+void ViewCsv::drawGraph(ofRectangle r) {
+    ofDrawBitmapStringHighlight(dataLabel, r.x+20, r.y+r.height/2, ofColor(0, 150));
+
+    ofMesh m_tar_x, m_tar_y, m_tar_z;
+    m_tar_x.clear();  m_tar_x.setMode(OF_PRIMITIVE_LINE_STRIP);
+    m_tar_y.clear();  m_tar_y.setMode(OF_PRIMITIVE_LINE_STRIP);
+    m_tar_z.clear();  m_tar_z.setMode(OF_PRIMITIVE_LINE_STRIP);
+
+    // head index
+    int head = sensor.max_buffer - frame - 1;
+    if (head < sensor.max_buffer - int(range)) { head = sensor.max_buffer - int(range); }
+
+    // Drawing graph "line"
+    for (int i = 0; i < int(range); i++) {
+        if (head + i > sensor.max_buffer) { break; }
+        int td = ofMap(i, 0, int(range), r.x, r.x + r.width);
+        int tx = ofMap(ofClamp(tar_x_buf[head + i], -3, 3), -3, 3, r.y + r.height, r.y);
+        int ty = ofMap(ofClamp(tar_y_buf[head + i], -3, 3), -3, 3, r.y + r.height, r.y);
+        int tz = ofMap(ofClamp(tar_z_buf[head + i], -3, 3), -3, 3, r.y + r.height, r.y);
+        m_tar_x.addVertex(ofVec3f(td, tx));
+        m_tar_y.addVertex(ofVec3f(td, ty));
+        m_tar_z.addVertex(ofVec3f(td, tz));
+    }
+
+    ofSetColor(col);
+    m_tar_x.draw();  m_tar_y.draw();  m_tar_z.draw();
+
+    // Drawing graph "point"
+    for (int i = 0; i < int(range); i++) {
+        if (head + i > sensor.max_buffer) { break; }
+        int td = ofMap(i, 0, int(range), r.x, r.x + r.width);
+        int tx = ofMap(ofClamp(tar_x_buf[head + i], -3, 3), -3, 3, r.y + r.height, r.y);
+        int ty = ofMap(ofClamp(tar_y_buf[head + i], -3, 3), -3, 3, r.y + r.height, r.y);
+        int tz = ofMap(ofClamp(tar_z_buf[head + i], -3, 3), -3, 3, r.y + r.height, r.y);
+
+        int frame_idx = frame - int(range) + i;
+        if (frame < int(range)) { frame_idx = i; }
+
+        if (frame_idx % int(freq) == 0) {
+            ofSetColor(255, 150);
+            ofDrawLine(td, r.y, td, r.y+r.height);
+            ofDrawBitmapStringHighlight("f: " + ofToString(frame_idx), ofMap(i, 0, int(range) - 1, r.x, r.x + r.width) + 5, r.y + r.height - 10);
+
+            // ofSetColor(col);
+            // ofNoFill();  ofDrawCircle(td, tx, 5);  ofDrawCircle(td, ty, 5);  ofDrawCircle(td, tz, 5);
+            // ofFill();    ofDrawCircle(td, tx, 3);  ofDrawCircle(td, ty, 3);  ofDrawCircle(td, tz, 3);
+
+            // ofDrawBitmapStringHighlight("x: " + ofToString(tar_x_buf[head + i]), td + 20, tx, ofColor(0, 50));
+            // ofDrawBitmapStringHighlight("y: " + ofToString(tar_y_buf[head + i]), td + 20, ty, ofColor(0, 50));
+            // ofDrawBitmapStringHighlight("z: " + ofToString(tar_z_buf[head + i]), td + 20, tz, ofColor(0, 50));
+        }
+    }
 }
 
 //--------------------------------------------------------------

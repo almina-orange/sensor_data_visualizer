@@ -10,12 +10,16 @@
 //--------------------------------------------------------------
 ViewManager::ViewManager(){
     viewMovie.load("fingers.mov");
-    // viewMovie.load("IMG_8868.MOV");
     viewAudio.load("/Users/almina/Downloads/of_v0.10.0_osx_release/apps/myApps/sensor_data_visualizer/bin/data/beat.wav");
-    // viewCsv.load("2020-0427-134121.csv");
     viewCsv.load("2020-0802-184128.csv");
-    viewOsc.load();
-    viewLabel.load();
+
+    // viewOsc.load();
+    // viewLabel.load();
+    // viewMovie.load("/Users/almina/Downloads/drive-download-20200808T140253Z-001/IMG_2903.MOV");
+    // viewCsv1.load("/Users/almina/Documents/work/SensorDataParser/data/left-2020-0805-213148-hirasawa-toprock.csv");
+    // viewCsv2.load("/Users/almina/Documents/work/SensorDataParser/data/right-2020-0805-213148-hirasawa-toprock.csv");
+
+    // this->load();
 
     separatedLayout(ofRectangle(0, 0, ofGetWidth(), ofGetHeight()));
 
@@ -41,13 +45,17 @@ void ViewManager::update(){
     viewMovie.update();
     viewAudio.update();
     viewCsv.update();
+    // viewCsv1.update();
+    // viewCsv2.update();
     viewOsc.update();
     viewLabel.update();
 }
 
 //--------------------------------------------------------------
 void ViewManager::draw(ofRectangle r){
-    // viewCsv.draw(ofRectangle(0, 0, ofGetWidth(), ofGetHeight()));
+    // viewMovie.draw(ofRectangle(r.x+r.width/4, r.y, r.width/2, r.height/2));
+    // viewCsv1.draw(ofRectangle(r.x          , r.y+r.height/2, r.width/2, r.height/2));
+    // viewCsv2.draw(ofRectangle(r.x+r.width/2, r.y+r.height/2, r.width/2, r.height/2));
 
     // Layout setup
     if (viewLayout == 0) { separatedLayout(r); }
@@ -142,6 +150,8 @@ void ViewManager::switchViewAudioPlay(){
 //--------------------------------------------------------------
 void ViewManager::switchViewSensorPlay(){
     viewCsv.switchPlaying();
+    // viewCsv1.switchPlaying();
+    // viewCsv2.switchPlaying();
     // viewOsc.switchPlaying();
 }
 
@@ -150,6 +160,8 @@ void ViewManager::clearView(){
     viewMovie.clear();
     viewAudio.clear();
     viewCsv.clear();
+    // viewCsv1.clear();
+    // viewCsv2.clear();
 }
 
 //--------------------------------------------------------------
@@ -166,6 +178,8 @@ void ViewManager::switchViewTarget(){
 void ViewManager::switchSensorViewMode(){
     sensorViewMode = (sensorViewMode + 1) % 3;
     viewCsv.setViewMode(sensorViewMode);
+    // viewCsv1.setViewMode(sensorViewMode);
+    // viewCsv2.setViewMode(sensorViewMode);
     viewOsc.setViewMode(sensorViewMode);
 }
 
@@ -173,6 +187,8 @@ void ViewManager::switchSensorViewMode(){
 void ViewManager::switchSensorViewData(){
     sensorViewDataIndex = (sensorViewDataIndex + 1) % 2;
     viewCsv.setSensorData(sensorViewDataIndex);
+    // viewCsv1.setSensorData(sensorViewDataIndex);
+    // viewCsv2.setSensorData(sensorViewDataIndex);
     viewOsc.setSensorData(sensorViewDataIndex);
 }
 

@@ -20,6 +20,8 @@ void ViewMovie::load(string filepath){
     movie.play();
 
     camera.initGrabber(ofGetWidth(), ofGetHeight());
+
+    frame = 0;
 }
 
 //--------------------------------------------------------------
@@ -32,6 +34,7 @@ void ViewMovie::load(){
 void ViewMovie::update(){
     movie.update();
     camera.update();
+    frame++;
 }
 
 //--------------------------------------------------------------
@@ -46,6 +49,7 @@ void ViewMovie::draw(ofRectangle r){
 
     if (bViewMovieFile) {
         ofSetColor(255);
+        // movie.setFrame(frame);
         movie.draw(rs.x, rs.y, rs.width, rs.height);
         
         float head = ofMap(movie.getPosition(), 0, 1, rs.x, rs.x+rs.width);

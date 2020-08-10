@@ -54,6 +54,8 @@ class ViewManager {
         ViewAudio viewAudio;
         ViewLabel viewLabel;
         ViewCsv viewCsv;
+        // ViewCsv viewCsv1;
+        // ViewCsv viewCsv2;
         ViewOsc viewOsc;
 
         ofRectangle regViewMovie;

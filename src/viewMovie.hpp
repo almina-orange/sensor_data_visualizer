@@ -28,6 +28,8 @@ class ViewMovie : public BasicView {
         ofVideoGrabber camera;
 
         bool bViewMovieFile;
+
+        int frame;
 };
 
 #endif /* ViewMovie_hpp */
